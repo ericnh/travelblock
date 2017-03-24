@@ -11,6 +11,17 @@
   <p class="alert"><%= alert %></p>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="<%= root_path %>">TravelBlock</a>
+        </div>
+      </div>
+    </nav>
+      <div class="container">
+        <div class="jumbotron">
+          <%= yield %>
+        </div>
+      </div>
   </body>
 </html>
