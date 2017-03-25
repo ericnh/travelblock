@@ -3,5 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :trips, foreign_key: 'creator_id', class_name: 'Trip'
+  has_many :trip_members
+  has_many :trips, through: :trip_members
+  has_many :created_trips, foreign_key: 'creator_id', class_name: 'Trip'
 end
