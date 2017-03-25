@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /trips
   # GET /trips.json
@@ -69,6 +70,8 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:name, :creator_id, :start_date, :end_date, :timezone_id)
+      p = params.require(:trip).permit(:name, :start_date, :end_date, :timezone_id)
+      p[:creator] = current_user
+      p
     end
 end
