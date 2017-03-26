@@ -29,10 +29,10 @@
   </tr>
   <% @user.trips.each do |trip| %>
     <tr>
-      <td><%= trip.name %></td>
+      <td><%= link_to trip.name, trip %></td>
       <td><%= trip.start_date %></td>
       <td><%= trip.end_date %></td>
-      <td><a>3</a></td>
+      <td title="<%= trip.trip_members.map {|m| m.user.first_name + ' ' + m.user.last_name}.join(', ') %>"><%= trip.trip_members.count %></td>
     </tr>
   <% end %>
   <tr>
