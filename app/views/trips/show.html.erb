@@ -1,29 +1,63 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @trip.name %>
-</p>
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#discussion" aria-controls="discussion" role="tab" data-toggle="tab">Discussion</a></li>
+    <li role="presentation"><a href="#pins" aria-controls="pins" role="tab" data-toggle="tab">Pins</a></li>
+    <li role="presentation"><a href="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Schedule</a></li>
+    <li role="presentation"><a href="#information" aria-controls="information" role="tab" data-toggle="tab">Information</a></li>
+  </ul>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @trip.creator_id %>
-</p>
+  <div class="tab-content">
 
-<p>
-  <strong>Start date:</strong>
-  <%= @trip.start_date %>
-</p>
+    <div role="tabpanel" class="tab-pane active" id="discussion">
+      <div class="container">
+        <h3>Discussions</h3>
+      </div>
+    </div>
 
-<p>
-  <strong>End date:</strong>
-  <%= @trip.end_date %>
-</p>
+    <div role="tabpanel" class="tab-pane" id="pins">
+      <div class="container">
+        <h3>Pins</h3>
+      </div>
+    </div>
 
-<p>
-  <strong>Timezone:</strong>
-  <%= @trip.timezone_id %>
-</p>
+    <div role="tabpanel" class="tab-pane" id="schedule">
+      <div class="container">
+        <h3>Schedule</h3>
+      </div>
+    </div>
 
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
-<%= link_to 'Back', trips_path %>
+
+    <div role="tabpanel" class="tab-pane" id="information">
+      <div class="container">
+        <p>
+          <strong>Name:</strong>
+          <%= @trip.name %>
+        </p>
+
+        <p>
+          <strong>Creator:</strong>
+          <%= @trip.creator_id %>
+        </p>
+
+        <p>
+          <strong>Start date:</strong>
+          <%= @trip.start_date %>
+        </p>
+
+        <p>
+          <strong>End date:</strong>
+          <%= @trip.end_date %>
+        </p>
+
+        <p>
+          <strong>Timezone:</strong>
+          <%= @trip.timezone_id %>
+        </p>
+
+        <%= link_to 'Edit', edit_trip_path(@trip) %>
+      </div>
+    </div>
+  </div>
+</div>
