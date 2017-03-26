@@ -13,18 +13,43 @@
     <div role="tabpanel" class="tab-pane active" id="discussion">
       <div class="container">
         <h3>Discussions</h3>
+        <h5>Todo:</h5>
+        <ol>
+          <li>Create discussions table {id: int, title: string, trip_id: int, timestamps:datetime}</li>
+          <li>Figure out polymorphic relationships</li>
+          <li>Create comments table {id: int, body: string, commentable_type:string, commentable_id:int, timestamps:datetime}</li>
+          <li>Explore the referenceable namespace vs prefix_referenceable namespace</li>
+          <li>Create link_references table {id:int, display_name:string, url:string, referenceable:string, referenceable_id:int, timestamps:datetime}</li>
+        </ol>
       </div>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="pins">
       <div class="container">
         <h3>Pins</h3>
+        <h5>Todo:</h5>
+        <ol>
+          <li>Create pins table {id:int, title:string, image_url:string}</li>
+          <li>Create tags table</li>
+          <li>Create location_tags table</li>
+          <li>Create trip_tags table</li>
+          <li>Create site_tags table</li>
+          <li>has_many comments</li>
+          <li>has_many link_references</li>
+          <li>Sort by location, activity, tag</li>
+        </ol>
       </div>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="schedule">
       <div class="container">
         <h3>Schedule</h3>
+        <h5>Todo:</h5>
+        <ol>
+          <li>Create blocks table {id:int, start_date:datetime, end_date:datetime}</li>
+          <li>has_many activity pins</li>
+          <li>has_many comments</li>
+        </ol>
       </div>
     </div>
 
