@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'registrations'}
+  authenticated :user do
+    root to: 'users#profile'
+  end
   root to: 'home#index'
+  get '/home', to: 'home#index'
   resources :trip_members
   resources :trips
   resources :users
