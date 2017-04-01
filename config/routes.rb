@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get '/home', to: 'home#index'
   resources :trip_members
-  resources :trips
+  resources :trips do
+    resources :trip_members
+  end
   resources :users
   get '/my_profile', to: 'users#profile'
+  # get 'trips/:trip_id/trip_members/new', to: 'trip_members#new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
