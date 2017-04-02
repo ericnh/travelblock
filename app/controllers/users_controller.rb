@@ -2,6 +2,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :profile, :index]
 
+  # GET /user_search?query=''
+  def search
+    @users = User.fuzzy_search(params[:query])
+    render json: @users, status: :ok
+  end
+
   # GET /users
   # GET /users.json
   def index

@@ -1,7 +1,9 @@
+<h2>Add members to <strong><%= @trip.name %></strong></h2>
 <div class="form-group">
   <label class="control-label" for="searchForUser">Search by name or email:</label>
   <div class="input-group">
     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-    <input type="text" class="form-control" id="searchForUser" aria-describedby="searchForUserStatus">
+    <input type="text" class="form-control js-search-user" id="searchForUser" aria-describedby="searchForUserStatus">
   </div>
 </div>
+<div class="list-group" id="found-users" data-trip-id="<%= @trip.id %>"></div>
