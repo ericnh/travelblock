@@ -72,12 +72,18 @@
             <th>View</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <% if (current_user == @trip.creator) %>
+              <th align="center">Remove User From Trip</th>
+            <% end %>
           </tr>
           <% @trip.trip_members.each do |trip_member| %>
-            <tr>
+            <tr data-trip-member-id="<%= trip_member.id %>">
               <td><a href="<%= user_path(trip_member.user) %>"><span class="glyphicon glyphicon-user"></span></a></td>
               <td><%= trip_member.user.first_name %></td>
               <td><%= trip_member.user.last_name %></td>
+              <% if (current_user == @trip.creator) %>
+                <td align="center"><button type="button" class="btn btn-danger js-delete-trip-member <%= trip_member.user == current_user ? 'disabled' : '' %>"><span class="glyphicon glyphicon-remove"></span></button></td>
+              <% end %>
             </tr>
           <% end %>
           <tr>
