@@ -82,12 +82,18 @@
               <td><%= trip_member.user.first_name %></td>
               <td><%= trip_member.user.last_name %></td>
               <% if (current_user == @trip.creator) %>
-                <td align="center"><button type="button" class="btn btn-danger js-delete-trip-member <%= trip_member.user == current_user ? 'disabled' : '' %>"><span class="glyphicon glyphicon-remove"></span></button></td>
+                <td align="center">
+                  <form action="/trip_members/<%= trip_member.id %>" class="button_to" data-remote="true" method="delete">
+                    <button type="submit" class="btn btn-danger <%= trip_member.user == current_user ? 'disabled' : '' %>">
+                      <span type="submit" class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </form>
+                </td>
               <% end %>
             </tr>
           <% end %>
           <tr>
-            <td colspan="3"><%= link_to 'Add New Trip Member', new_trip_trip_member_path(@trip) %>
+            <td colspan="<%= @trip.creator == current_user ? 4 : 3 %>"><%= link_to 'Add New Trip Member', new_trip_trip_member_path(@trip) %>
           </tr>
         </table>
       </div>
