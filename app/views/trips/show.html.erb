@@ -13,14 +13,40 @@
     <div role="tabpanel" class="tab-pane active" id="discussion">
       <div class="container">
         <h3>Discussions</h3>
-        <h5>Todo:</h5>
-        <ol>
-          <li>Create discussions table {id: int, title: string, trip_id: int, timestamps:datetime}</li>
-          <li>Figure out polymorphic relationships</li>
-          <li>Create comments table {id: int, body: string, commentable_type:string, commentable_id:int, timestamps:datetime}</li>
-          <li>Explore the referenceable namespace vs prefix_referenceable namespace</li>
-          <li>Create link_references table {id:int, display_name:string, url:string, referenceable:string, referenceable_id:int, timestamps:datetime}</li>
-        </ol>
+        <table class="table"> 
+          <tr>
+            <th>Title</th>
+            <th>Comments</th>
+          </tr>
+          <% @trip.discussions.each do |discussion| %>
+            <tr data-trip-member-id="<%= trip_member.id %>">
+              <td><a href="<%= user_path(trip_member.user) %>"><span class="glyphicon glyphicon-user"></span></a></td>
+              <td><%= trip_member.user.first_name %></td>
+              <td><%= trip_member.user.last_name %></td>
+              <% if (current_user == @trip.creator) %>
+                <% if (current_user == trip_member.user) %>
+                  <td align="center">
+                    <button class="btn btn-danger disabled">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </td>
+                <% else %>
+                  <td align="center">
+                    <form action="/trip_members/<%= trip_member.id %>" class="button_to" data-remote="true" method="delete">
+                      <button type="submit" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </form>
+                  </td>
+
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="<%= @trip.creator == current_user ? 4 : 3 %>"><%= link_to 'Add New Trip Member', new_trip_trip_member_path(@trip) %>
+          </tr>
+        </table>
       </div>
     </div>
 
