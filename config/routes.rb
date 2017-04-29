@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :trip_members
   resources :trips do
     resources :trip_members
+    resources :discussions, only: [:new, :create]
   end
   resources :users
   get '/my_profile', to: 'users#profile'
