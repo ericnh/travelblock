@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :users
   get '/my_profile', to: 'users#profile'
   get '/user_search', to: 'users#search'
-  # get 'trips/:trip_id/trip_members/new', to: 'trip_members#new'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :api do
+    namespace :v1 do
+      get 'trips/:trip_id/discussions', to: 'discussions#trip_index'
+    end
+  end
 end
