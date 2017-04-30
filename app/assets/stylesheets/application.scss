@@ -14,10 +14,25 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+a {
+  cursor: pointer;
+}
+
+a.no-underline {
+  text-decoration-line: none;
+}
+
 .none {
   display: none;
 }
 
 .pull-right {
   float: right;
+}
+
+.subheader-fullwidth {
+  border-bottom: 1px solid lightgray;
+  a {
+    text-decoration-line: none;
+  }
 }

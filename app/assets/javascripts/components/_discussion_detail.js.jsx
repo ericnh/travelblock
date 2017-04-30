@@ -2,9 +2,11 @@ class DiscussionDetail extends React.Component {
   render() {
     return (
         <div>
-          <h3>{ this.props.discussion.title }</h3>
+          <h3 className="subheader-fullwidth">
+            <a onClick={ this.props.goBack }><span className="glyphicon glyphicon-arrow-left"> </span> </a>
+            { this.props.discussion.title }
+          </h3>
           <p>{ this.props.discussion.body }</p>
-          <a onClick={ this.props.goBack }>back</a>
         </div>
     )
   }

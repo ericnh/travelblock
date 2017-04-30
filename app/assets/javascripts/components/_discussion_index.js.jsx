@@ -44,7 +44,10 @@ class DiscussionIndex extends React.Component {
     const discussions = this.state.discussions.map((discussion) => {
       return (
         <div key={discussion.id} onClick={ this.showDetail.bind(this, discussion.id) }>
-          <h3>{ discussion.title }</h3>
+          <h3>
+            <a className="no-underline"><span className="glyphicon glyphicon-arrow-right"> </span> </a>
+            { discussion.title }
+          </h3>
         </div>
       )
     });
