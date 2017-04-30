@@ -12,22 +12,7 @@
 
     <div role="tabpanel" class="tab-pane active" id="discussion">
       <div class="container">
-        <h3>Discussions</h3>
-        <table class="table"> 
-          <tr>
-            <th>Title</th>
-            <th>Comments</th>
-          </tr>
-          <% @trip.discussions.each do |discussion| %>
-            <tr>
-              <td><%= link_to discussion, discussion.title %></td>
-              <td><%= discussion.comments.count %></td>
-            </tr>
-          <% end %>
-          <tr>
-            <td colspan="2"><%= link_to 'Create new discussion', new_trip_discussion_path(@trip) %>
-          </tr>
-        </table>
+        <%= react_component('DiscussionIndex', {trip_id: @trip.id}) %>
       </div>
     </div>
 
