@@ -9,6 +9,8 @@ class DiscussionIndex extends React.Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.hideDetail = this.hideDetail.bind(this);
     this.createDiscussion = this.createDiscussion.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +40,27 @@ class DiscussionIndex extends React.Component {
     this.setState({ currentDiscussion: null });
   }
 
+  handleEdit() {
+    debugger;
+  }
+
+  handleDelete(discussion) {
+    $.ajax({
+      url: "/api/v1/discussions/" + discussion.id,
+      type: "DELETE",
+      success: (response) => {
+        this.removeDiscussion(discussion);
+      }
+    });
+  }
+
+  removeDiscussion(removedDiscussion) {
+    const newDiscussions = this.state.discussions.filter(function(discussion) {
+      return discussion.id != removedDiscussion.id
+    });
+    this.setState({discussions: newDiscussions, currentDiscussion: null});
+  }
+
   render() {
     const editing = this.state.editing;
     const currentDiscussion = this.state.currentDiscussion;
@@ -51,8 +74,12 @@ class DiscussionIndex extends React.Component {
         </div>
       )
     });
+
     if (currentDiscussion) {
-      return <DiscussionDetail discussion={ currentDiscussion } goBack={ this.hideDetail } />
+      return <DiscussionDetail discussion={ currentDiscussion } 
+                               goBack={ this.hideDetail }
+                               handleEdit={ this.handleEdit }
+                               handleDelete={ this.handleDelete } />
     } else if (!editing) {
       return (
           <div>

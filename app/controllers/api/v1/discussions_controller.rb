@@ -8,6 +8,10 @@ class Api::V1::DiscussionsController < Api::V1::BaseController
     respond_with discussion, json: discussion
   end
 
+  def destroy
+    respond_with Discussion.destroy(params[:id])
+  end
+
   private
   
   def discussion_params

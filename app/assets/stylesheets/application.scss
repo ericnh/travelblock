@@ -36,7 +36,11 @@ a.no-underline {
 
 .subheader-fullwidth {
   border-bottom: 1px solid lightgray;
+  padding-bottom: 15px;
   a {
     text-decoration-line: none;
+  }
+  button {
+    margin-left: 10px;
   }
 }
