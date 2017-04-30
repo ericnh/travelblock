@@ -30,6 +30,10 @@ a.no-underline {
   float: right;
 }
 
+.show-line-breaks {
+  white-space: pre-wrap;
+}
+
 .subheader-fullwidth {
   border-bottom: 1px solid lightgray;
   a {

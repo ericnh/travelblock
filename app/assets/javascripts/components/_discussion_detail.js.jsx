@@ -6,7 +6,7 @@ class DiscussionDetail extends React.Component {
             <a onClick={ this.props.goBack }><span className="glyphicon glyphicon-arrow-left"> </span> </a>
             { this.props.discussion.title }
           </h3>
-          <p>{ this.props.discussion.body }</p>
+          <p className="show-line-breaks">{ this.props.discussion.body }</p>
         </div>
     )
   }
