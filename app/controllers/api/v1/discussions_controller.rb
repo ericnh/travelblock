@@ -21,6 +21,6 @@ class Api::V1::DiscussionsController < Api::V1::BaseController
   private
   
   def discussion_params
-    params.require(:discussion).permit(:id, :title, :body, :trip_id)
+    params.require(:discussion).permit(:id, :title, :body, :trip_id).merge!({user: current_user})
   end
 end
