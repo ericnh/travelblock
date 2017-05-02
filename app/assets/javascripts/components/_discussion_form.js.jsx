@@ -1,9 +1,18 @@
 class DiscussionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: 'foo',
-      body: 'bar'
+    if (this.props.currentDiscussion) {
+      this.state = {
+        discussion: this.props.currentDiscussion
+      }
+    } else {
+      this.state = {
+        discussion: { 
+          title: '', 
+          body: '', 
+          trip_id: this.props.trip_id
+        }
+      }
     }
     this.changeTitle = this.changeTitle.bind(this);
     this.changeBody = this.changeBody.bind(this);
@@ -11,28 +20,38 @@ class DiscussionForm extends React.Component {
   }
 
   changeTitle(event) {
-    this.setState({ title: event.target.value });
+    let discussion = this.state.discussion;
+    discussion.title = event.target.value;
+    this.setState({ discussion: discussion });
   }
 
   changeBody(event) {
-    this.setState({ body: event.target.value });
+    let discussion = this.state.discussion;
+    discussion.body = event.target.value;
+    this.setState({ discussion: discussion });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const discussion = {
-      title: this.state.title,
-      body: this.state.body,
-      trip_id: this.props.trip_id
-    };
-    $.ajax({
-        url: '/api/v1/discussions',
-        type: 'POST',
-        data: { discussion: discussion },
-        success: (response) => {
-          this.props.handleSubmit(response);
-        }
-    });
+    if (this.state.discussion.id) {
+      $.ajax({
+          url: '/api/v1/discussions/' + this.state.discussion.id,
+          type: 'PUT',
+          data: { discussion: this.state.discussion },
+          success: (response) => {
+            this.props.handleUpdate(response);
+          }
+      });
+    } else {
+      $.ajax({
+          url: '/api/v1/discussions',
+          type: 'POST',
+          data: { discussion: this.state.discussion },
+          success: (response) => {
+            this.props.handleSubmit(response);
+          }
+      });
+    }
   }
 
   render() {
@@ -44,7 +63,7 @@ class DiscussionForm extends React.Component {
           <input type="text" 
                  className="form-control" 
                  id="title" 
-                 value={ this.state.title } 
+                 value={ this.state.discussion.title } 
                  onChange={ this.changeTitle }>
           </input>
         </div>
@@ -52,7 +71,7 @@ class DiscussionForm extends React.Component {
           <label htmlFor="body">Body</label>
           <textarea className="form-control" 
                     id="body" 
-                    value={ this.state.body } 
+                    value={ this.state.discussion.body } 
                     onChange={ this.changeBody }>
           </textarea>
         </div>

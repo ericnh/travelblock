@@ -9,6 +9,7 @@ class DiscussionIndex extends React.Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.hideDetail = this.hideDetail.bind(this);
     this.createDiscussion = this.createDiscussion.bind(this);
+    this.updateDiscussion = this.updateDiscussion.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -20,6 +21,13 @@ class DiscussionIndex extends React.Component {
   createDiscussion(discussion) {
     const discussions = this.state.discussions.concat(discussion);
     this.setState({discussions: discussions, editing: false});
+  }
+
+  updateDiscussion(discussion) {
+    const discussions = this.state.discussions.map((existingDiscussion) => {
+      return existingDiscussion.id === discussion.id ? discussion : existingDiscussion;
+    });
+    this.setState({discussions: discussions, editing: false, currentDiscussion: discussion});
   }
 
   toggleForm(e) {
@@ -41,7 +49,8 @@ class DiscussionIndex extends React.Component {
   }
 
   handleEdit() {
-    debugger;
+    // currentDiscussion is already set
+    this.setState({editing: true});
   }
 
   handleDelete(discussion) {
@@ -75,20 +84,24 @@ class DiscussionIndex extends React.Component {
       )
     });
 
-    if (currentDiscussion) {
+    if (editing) {
+      return <DiscussionForm goBack={this.toggleForm} 
+                             handleSubmit={ this.createDiscussion } 
+                             handleUpdate={ this.updateDiscussion } 
+                             trip_id={ this.props.trip_id }
+                             currentDiscussion={ currentDiscussion } />
+    } else if (currentDiscussion) {
       return <DiscussionDetail discussion={ currentDiscussion } 
                                goBack={ this.hideDetail }
                                handleEdit={ this.handleEdit }
                                handleDelete={ this.handleDelete } />
-    } else if (!editing) {
+    } else {
       return (
           <div>
             { discussions }
             <h3><a onClick={this.toggleForm}>Create New Discussion</a></h3>
           </div>
       )
-    } else {
-      return <DiscussionForm goBack={this.toggleForm} handleSubmit={ this.createDiscussion } trip_id={ this.props.trip_id } />
     }
   }
 }

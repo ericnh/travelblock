@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'trips/:trip_id/discussions', to: 'discussions#trip_index'
-      resources :discussions, only: [:create, :destroy]
+      resources :discussions, only: [:create, :destroy, :update]
     end
   end
 end
