@@ -70,7 +70,7 @@ class CommentForm extends React.Component {
         <div className="col-md-2 user-information border-right">
           <p>{ this.userName(this.props.currentUser) }</p>
           <p>05/05/2017</p>
-          <button onClick={ this.submit }>Submit</button>
+          <button className="btn btn-sm btn-default" onClick={ this.submit }>Submit</button>
         </div>
         <div className="col-md-10 form-group">
           <textarea className="form-control comment-body"

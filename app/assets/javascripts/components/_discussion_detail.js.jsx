@@ -20,7 +20,7 @@ class DiscussionDetail extends React.Component {
 
   showEditButton() {
     if (this.props.currentUser.id == this.props.discussion.user.id) {
-      return <button className="btn btn-default" type="button" onClick={ this.props.handleEdit }>Edit</button>;
+      return <button className="btn btn-sm btn-default" type="button" onClick={ this.props.handleEdit }>Edit</button>;
     }
   }
 
