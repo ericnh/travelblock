@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'trips/:trip_id/discussions', to: 'discussions#trip_index'
       resources :discussions, only: [:create, :destroy, :update]
+      get ':commentable_type/:commentable_id/comments', to: 'comments#commentable_index'
     end
   end
 end

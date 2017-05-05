@@ -1,6 +1,5 @@
 class DiscussionSerializer < ActiveModel::Serializer
   attributes :id, :title, :body, :created
-  has_many :comments, each_serializer: CommentSerializer
   has_one :user
 
   def created

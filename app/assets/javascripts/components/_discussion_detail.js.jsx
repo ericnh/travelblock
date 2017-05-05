@@ -46,7 +46,7 @@ class DiscussionDetail extends React.Component {
             </div>
             <p className="show-line-breaks col-md-10">{ this.props.discussion.body }</p>
           </div>
-          <CommentIndex comments={ this.props.discussion.comments } />
+          <CommentIndex commentableID={ this.props.discussion.id } commentableType="Discussion" />
         </div>
     )
   }

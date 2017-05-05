@@ -1,5 +1,16 @@
 class CommentIndex extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: []
+    }
+  }
+
+  componentDidMount() {
+    $.getJSON('/api/v1/' + this.props.commentableType + '/' + this.props.commentableID + '/comments.json', (response) => { this.setState({comments: response}) });
+  }
+
   userName(comment) {
     if (comment.user) {
      return comment.user.first_name + " " + comment.user.last_name;
@@ -9,7 +20,7 @@ class CommentIndex extends React.Component {
   }
     
   render() {
-    const comments = this.props.comments.map((comment) => {
+    const comments = this.state.comments.map((comment) => {
       return (
         <div className="row comment-row" key={ comment.id }>
           <div className="col-md-2 user-information border-right">
