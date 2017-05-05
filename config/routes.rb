@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get 'trips/:trip_id/discussions', to: 'discussions#trip_index'
       resources :discussions, only: [:create, :destroy, :update]
       get ':commentable_type/:commentable_id/comments', to: 'comments#commentable_index'
+      resources :comments, only: [:create, :destroy, :update]
     end
   end
 end

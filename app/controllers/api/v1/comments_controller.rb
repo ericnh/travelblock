@@ -4,18 +4,18 @@ class Api::V1::CommentsController < Api::V1::BaseController
   end
 
   def create
-    discussion = Discussion.create(discussion_params)
-    respond_with discussion, json: discussion
+    comment = Comment.create(comment_params)
+    respond_with comment, json: comment
   end
 
   def update
-    discussion = Discussion.find(params[:id])
-    discussion.update(discussion_params)
-    respond_with discussion, json: discussion
+    comment = Comment.find(params[:id])
+    comment.update(comment_params)
+    respond_with comment, json: comment
   end
 
   def destroy
-    respond_with Discussion.destroy(params[:id])
+    respond_with Comment.destroy(params[:id])
   end
 
   private
