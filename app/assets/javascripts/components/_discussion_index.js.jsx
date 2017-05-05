@@ -15,7 +15,7 @@ class DiscussionIndex extends React.Component {
   }
 
   componentDidMount() {
-    $.getJSON('/api/v1/trips/' + this.props.trip_id + '/discussions.json', (response) => { this.setState({discussions: response}) });
+    $.getJSON('/api/v1/trips/' + this.props.hash.trip_id + '/discussions.json', (response) => { this.setState({discussions: response}) });
   }
 
   createDiscussion(discussion) {
@@ -88,10 +88,11 @@ class DiscussionIndex extends React.Component {
       return <DiscussionForm goBack={this.toggleForm} 
                              handleSubmit={ this.createDiscussion } 
                              handleUpdate={ this.updateDiscussion } 
-                             trip_id={ this.props.trip_id }
+                             trip_id={ this.props.hash.trip_id }
                              currentDiscussion={ currentDiscussion } />
     } else if (currentDiscussion) {
       return <DiscussionDetail discussion={ currentDiscussion } 
+                               currentUser={ this.props.hash.currentUser }
                                goBack={ this.hideDetail }
                                handleEdit={ this.handleEdit }
                                handleDelete={ this.handleDelete } />

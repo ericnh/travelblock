@@ -12,7 +12,7 @@
 
     <div role="tabpanel" class="tab-pane active" id="discussion">
       <div class="container">
-        <%= react_component('DiscussionIndex', {trip_id: @trip.id}) %>
+        <%= react_component('DiscussionIndex', {hash: {trip_id: @trip.id, currentUser: current_user}}) %>
       </div>
     </div>
 
