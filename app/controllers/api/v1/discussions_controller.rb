@@ -1,6 +1,6 @@
 class Api::V1::DiscussionsController < Api::V1::BaseController
   def trip_index
-    respond_with Trip.find(params[:trip_id]).discussions
+    respond_with Trip.find(params[:trip_id]).discussions.order('updated_at DESC')
   end
 
   def create

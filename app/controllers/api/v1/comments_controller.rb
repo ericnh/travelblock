@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < Api::V1::BaseController
   def commentable_index
-    respond_with Comment.where(commentable_id: params[:commentable_id], commentable_type: params[:commentable_type])
+    respond_with Comment.where(commentable_id: params[:commentable_id], commentable_type: params[:commentable_type]).order(:created_at)
   end
 
   def create
