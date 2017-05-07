@@ -24,6 +24,17 @@ gem 'coffee-rails', '~> 4.2'
 gem 'react-rails'
 gem 'responders'
 
+# upload images
+gem "paperclip", "~> 5.0.0.beta1"
+
+# interest votes
+gem 'acts_as_votable', '~> 0.10.0'
+
+# handle times
+gem 'momentjs-rails'
+
+
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
