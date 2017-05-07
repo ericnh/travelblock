@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <nav class="navbar">
+    <ul class="nav nav-tabs nav-justified">
+      <li role="presentation" class="active nav-item"><a href="/trips/<%= @trip.id %>/discussions" class="nav-link">Discussion</a></li>
+      <li role="presentation" class="nav-item"><a href="/trips/<%= @trip.id %>/activities" class="nav-link">Activities</a></li>
+      <li role="presentation" class="nav-item"><a href="/trips/<%= @trip.id %>/schedules" class="nav-link">Schedule</a></li>
+      <li role="presentation" class="nav-item"><a href="/trips/<%= @trip.id %>/information" class="nav-link">Information</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <%= react_component('DiscussionIndex', {hash: {trip_id: @trip.id, currentUser: current_user}}) %>
+  </div>
+
+</div>

@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<nav class="navbar">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation" class="nav-item"><a href="/trips/<%= @trip.id %>/discussions" class="nav-link">Discussion</a></li>
+    <li role="presentation" class="nav-item"><a href="/trips/<%= @trip.id %>/activities" class="nav-link">Activities</a></li>
+    <li role="presentation" class="nav-item"><a href="/trips/<%= @trip.id %>/schedules" class="nav-link">Schedule</a></li>
+    <li role="presentation" class="active nav-item"><a href="/trips/<%= @trip.id %>/information" class="nav-link">Information</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <%= link_to 'Edit', edit_trip_path(@trip) %>
+  <p>
+    <strong>Name:</strong>
+    <%= @trip.name %>
+  </p>
+
+  <p>
+    <strong>Dates:</strong>
+    <%= @trip.start_date.strftime('%B %-d, %Y') %> - <%= @trip.end_date.strftime('%B %-d, %Y') %>
+  </p>
+
+  <table class="table"> 
+    <tr>
+      <th>View</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <% if (current_user == @trip.creator) %>
+        <th align="center">Remove User From Trip</th>
+      <% end %>
+    </tr>
+    <% @trip.trip_members.each do |trip_member| %>
+      <tr data-trip-member-id="<%= trip_member.id %>">
+        <td><a href="<%= user_path(trip_member.user) %>"><span class="glyphicon glyphicon-user"></span></a></td>
+        <td><%= trip_member.user.first_name %></td>
+        <td><%= trip_member.user.last_name %></td>
+        <% if (current_user == @trip.creator) %>
+          <% if (current_user == trip_member.user) %>
+            <td align="center">
+              <button class="btn btn-danger disabled">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </td>
+          <% else %>
+            <td align="center">
+              <form action="/trip_members/<%= trip_member.id %>" class="button_to" data-remote="true" method="delete">
+                <button type="submit" class="btn btn-danger">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </form>
+            </td>
+
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="<%= @trip.creator == current_user ? 4 : 3 %>"><%= link_to 'Add New Trip Member', new_trip_trip_member_path(@trip) %>
+    </tr>
+  </table>
+</div>

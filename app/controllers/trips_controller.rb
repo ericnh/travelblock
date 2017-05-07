@@ -1,11 +1,27 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy, :discussions, :activities, :schedules, :information]
   before_action :authenticate_user!
 
   # GET /trips
   # GET /trips.json
   def index
     @trips = Trip.all
+  end
+
+  # GET /trips/1/discussions
+  def discussions
+  end
+
+  # GET /trips/1/activities
+  def activities
+  end
+
+  # GET /trips/1/schedules
+  def schedules
+  end
+
+  # GET /trips/1/information
+  def information
   end
 
   # GET /trips/1

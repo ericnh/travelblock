@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   resources :trip_members
   resources :trips do
     resources :trip_members
-    resources :discussions, only: [:new, :create]
   end
+  get '/trips/:id/discussions', to: 'trips#discussions'
+  get '/trips/:id/activities', to: 'trips#activities'
+  get '/trips/:id/schedules', to: 'trips#schedules'
+  get '/trips/:id/information', to: 'trips#information'
   resources :users
   get '/my_profile', to: 'users#profile'
   get '/user_search', to: 'users#search'
